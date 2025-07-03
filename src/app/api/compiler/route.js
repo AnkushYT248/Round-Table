@@ -1,11 +1,11 @@
-export const POST = async (req: any) => {
+export const POST = async (req) => {
   try {
     const { language, code } = await req.json();
 
     const runtimesRes = await fetch("https://emkc.org/api/v2/piston/runtimes");
     const runtimes = await runtimesRes.json();
 
-    const runtime = runtimes.find((rt: any) => rt.language === language);
+    const runtime = runtimes.find((rt) => rt.language === language);
 
     if (!runtime) {
       return new Response(JSON.stringify({ error: "Language not supported" }), {

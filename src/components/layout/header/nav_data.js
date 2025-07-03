@@ -1,9 +1,7 @@
 import {
   BookOpenText,
   Brain,
-  Briefcase,
   GraduationCap,
-  icons,
 } from "lucide-react";
 
 const nav_data = [

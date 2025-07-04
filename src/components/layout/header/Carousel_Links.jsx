@@ -104,7 +104,7 @@ const CarouselLinks = () => {
           ))}
         </div>
         <button
-          className="absolute right-0 top-[45%] -translate-y-1/2 z-10 bg-white dark:bg-[#161617] rounded-full p-1 shadow hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="absolute right-4 top-[45%] -translate-y-1/2 z-10 bg-white dark:bg-[#161617] rounded-full p-1 shadow hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           onClick={() => scroll("right")}
           aria-label="Scroll right"
           type="button"

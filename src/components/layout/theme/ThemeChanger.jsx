@@ -10,7 +10,7 @@ const ThemeChanger = () => {
     <button
       onClick={toggleDarkMode}
       aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-      className={`rounded-full p-2 border shadow transition-colors duration-300}`}
+      className={`rounded-full p-2 border shadow transition-colors duration-600 cursor-pointer`}
     >
       <span className="transition-all duration-300 flex items-center justify-center">
         {darkMode ? <Sun className="scale-110" /> : <Moon className="scale-110" />}

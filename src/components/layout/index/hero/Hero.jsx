@@ -35,13 +35,19 @@ const Hero = () => {
       transition={{ duration: 0.6 }}
       className="w-full h-full max-h-[500px] flex flex-col items-center justify-center p-4 overflow-x-hidden"
     >
+       <div className="items-center justify-center hidden lg:flex flex-col my-6">
+        <span className="text-3xl md:text-4xl lg:text-5xl audiowide rounded-md p-2 bg-gradient-to-r from-red-500 to-violet-700 dark:to-white text-transparent bg-clip-text flex items-center justify-center">
+          <span className="mr-1">Round</span>|<span>Table</span>
+        </span>
+        <div className=""></div>
+      </div>
       <div className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-xl font-bold md:text-2xl lg:text-3xl xl:text-5xl tracking-wide text-gray-100">
           As the world learns what’s right, it grows—guided by the light of
           wisdom.
         </h2>
 
-        <div className="relative w-full max-w-3xl mt-2">
+        <div className="relative w-full max-w-3xl mt-2 flex items-center justify-center">
           <input
             type="text"
             className="w-full p-4 border-2 rounded-2xl bg-white/80 dark:bg-black/30 backdrop-blur-sm text-black dark:text-white 
@@ -71,7 +77,7 @@ const Hero = () => {
           </div>
 
           {/* Search Icon */}
-          <div className="absolute right-5 top-4 text-gray-500 dark:text-gray-300">
+          <div className="absolute right-5 top-5 md:top-6 text-gray-500 dark:text-gray-300">
             <Search size={20} />
           </div>
         </div>

@@ -110,7 +110,7 @@ const Courses = () => {
 
   return (
     <div className="dark:bg-[#111111] bg-[#e9e6ef] px-6 py-10">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6 flex-col md:flex-row gap-2">
         <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white">
           Courses
         </h2>

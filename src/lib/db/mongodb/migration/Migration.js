@@ -1,113 +1,112 @@
 import mongoose from "mongoose";
-import NavCategory from "../models/nav_links/NavModel.js";
-import PillBar from "../models/nav_links/PillBarModel.js";
 import { ConnectToMongoClientDb } from "../../connection/mognodb.js";
 import dotenv from "dotenv";
+import CourseModel from "../models/course/CourseModel.js";
+import Tutorials from "../models/tutorials/Tutorials.js";
 dotenv.config();
 
 // Example navigation data to migrate
-const navCategories = [
+const courses = [
   {
-    title: "Courses",
-    icon: "GraduationCap",
-    items: [
-      { title: "Dsa Courses", path: "/courses/dsa" },
-      { title: "Backend", path: "/courses/backend" },
-      { title: "Dev Ops", path: "/courses/dev_ops" },
-      { title: "System", path: "/courses/system" },
-      { title: "All Courses", path: "/courses/all" },
-    ],
+    title: "AI & ML",
+    level: "Beginner to Advanced",
+    description:
+      "Dive into the world of Artificial Intelligence and Machine Learning with a structured roadmap covering core concepts, hands-on projects, and real-world applications.",
+    rating: 4.4,
+    category: "Artificial Intelligence",
+    duration: "12 weeks",
+    instructor: "Dr. Ayesha Verma",
+    price: 0.0,
+    uploadedDate: "2025-04-04",
+    joined: 14000,
+    tags: ["AI", "Machine Learning", "Python", "Neural Networks"],
+    refrenceLink: "https://example.com/ai-ml-roadmap",
+    courseLink: "/courses/ai-ml-roadmap",
   },
   {
-    title: "Tutorials",
-    icon: "BookOpenText",
-    items: [
-      { title: "Python", path: "/tutorials/python" },
-      { title: "Java", path: "/tutorials/java" },
-      { title: "HTML", path: "/tutorials/html" },
-      { title: "CSS", path: "/tutorials/css" },
-      { title: "C++", path: "/tutorials/cplusplus" },
-      { title: "C#", path: "/tutorials/csharp" },
-      { title: "Java Script", path: "/tutorials/javascript" },
-      { title: "Full Stack", path: "/tutorials/full_stack" },
-      { title: "More Tutorials", path: "/tutorials/all" },
-    ],
+    title: "Frontend Web Development",
+    level: "Beginner to Intermediate",
+    description:
+      "Learn HTML, CSS, JavaScript, and modern frameworks to build responsive and accessible web interfaces from scratch.",
+    rating: 4.4,
+    category: "Web Development",
+    duration: "10 weeks",
+    instructor: "Dr. Ayesha Verma",
+    price: 15.0,
+    uploadedDate: "2025-06-01",
+    joined: 86000,
+    tags: ["HTML", "CSS", "JavaScript", "Web Development", "React"],
+    refrenceLink: "https://example.com/frontend-web-development",
+    courseLink: "/courses/frontend-web-development",
   },
   {
-    title: "Practice",
-    icon: "Brain",
-    items: [
-      { title: "Problem Solving", path: "/practice/problem_solving" },
-      { title: "Data Structures", path: "/practice/data_structures" },
-      { title: "Algorithms", path: "/practice/algorithms" },
-      { title: "System Design", path: "/practice/system_design" },
-      { title: "Interview Questions", path: "/practice/interview_questions" },
-    ],
+    title: "Data Structures & Algorithms",
+    level: "Beginner to Intermediate",
+    description:
+      "Master the fundamentals of Data Structures and Algorithms to enhance your problem-solving skills and coding efficiency.",
+    rating: 3.4,
+    category: "Computer Science",
+    duration: "8 weeks",
+    instructor: "Neha Sharma",
+    price: 29,
+    uploadedDate: "2025-02-13",
+    joined: 176000,
+    tags: ["DSA", "Java", "C++", "Competitive Programming"],
+    refrenceLink: "https://example.com/data-structures-algorithms",
+    courseLink: "/courses/data-structures-algorithms",
   },
+  {
+    title: "Cloud Computing with AWS",
+    level: "Beginner to Intermediate",
+    description:
+      "Learn the fundamentals of Cloud Computing and gain hands-on experience with AWS services to build scalable and resilient applications.",
+    rating: 4.5,
+    category: "Cloud Computing",
+    duration: "12 weeks",
+    instructor: "Amit Joshi",
+    price: 49,
+    uploadedDate: "2025-01-09",
+    joined: 202000,
+    tags: ["AWS", "Cloud Computing", "DevOps"],
+    refrenceLink: "https://example.com/cloud-computing-aws",
+    courseLink: "/courses/cloud-computing-aws",
+  }
 ];
 
-const PillBarData  = [
-    {
-    title: "DSA",
-    path: "/courses/dsa",
+const tutorialsData = [
+  {
+    title: "Python Tutorial",
+    tutorialLink: "/tutorials/python",
   },
   {
-    title: "Data Science",
-    path: "/courses/data-science",
+    title: "JavaScript Tutorial",
+    tutorialLink: "/tutorials/javascript",
   },
   {
-    title: "Python",
-    path: "/tutorial/python",
+    title: "React Tutorial",
+    tutorialLink: "/tutorials/react",
   },
   {
-    title: "Java",
-    path: "/tutorial/java",
+    title: "Node.js Tutorial",
+    tutorialLink: "/tutorials/nodejs",
   },
   {
-    title: "Java Script",
-    path: "/tutorial/javascript",
+    title: "Machine Learning Tutorial",
+    tutorialLink: "/tutorials/machine-learning",
   },
   {
-    title: "React",
-    path: "/courses/react",
+    title: "Data Science Tutorial",
+    tutorialLink: "/tutorials/data-science",
   },
   {
-    title: "Django",
-    path: "/tutorial/django",
+    title: "Web Development Tutorial",
+    tutorialLink: "/tutorials/web-development",
   },
   {
-    title: "Rust",
-    path: "/tutorial/rust",
+    title: "Cloud Computing Tutorial",
+    tutorialLink: "/tutorials/cloud-computing",
   },
-  {
-    title: "Ruby",
-    path: "/tutorial/ruby",
-  },
-  {
-    title: "C++",
-    path: "/tutorial/cpp",
-  },
-  {
-    title: "C#",
-    path: "/tutorial/csharp",
-  },
-  {
-    title: "Unreal Engine",
-    path: "/courses/unreal-engine",
-  },
-  {
-    title: "Backend",
-    path: "/courses/backend",
-  },
-  {
-    title: "More Courses",
-    path: "/courses/all",
-  },
-  {
-    title: "More Tutorials",
-    path: "/tutorial/all",
-  },
-];
+]
 
 async function migrateNavCategories() {
   try {
@@ -115,20 +114,20 @@ async function migrateNavCategories() {
     console.log("Connected to MongoDB");
 
     // Optional: Clear existing data
-    await NavCategory.deleteMany({});
-    console.log("Cleared existing NavCategory data");
+    await CourseModel.deleteMany({});
+    console.log("Cleared existing Course data");
 
-    // Optional: Clear existing PillBar data
-    await PillBar.deleteMany({});
-    console.log("Cleared existing PillBar data");
+    // Optional: Clear existing Tutorials data
+    await Tutorials.deleteMany({});
+    console.log("Cleared existing Tutorials data");
 
     // Insert new data
-    await NavCategory.insertMany(navCategories);
-    console.log("NavCategory migration completed successfully");
+    await CourseModel.insertMany(courses);
+    console.log("Course migration completed successfully");
 
-    // Insert new PillBar data
-    await PillBar.insertMany(PillBarData);
-    console.log("PillBar migration completed successfully");
+    // Insert new Tutorials data
+    await Tutorials.insertMany(tutorialsData);
+    console.log("Tutorials migration completed successfully");
   } catch (error) {
     console.error("Migration failed:", error);
   } finally {

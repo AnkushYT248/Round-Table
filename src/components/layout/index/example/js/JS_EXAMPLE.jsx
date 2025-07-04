@@ -119,7 +119,7 @@ for(let i = 0; i < 10; i++) {
                 className="font-semibold cursor-pointer"
                 onClick={() => compileCode()}
               >
-                {loading ? <ClipLoader size={30} color={`${darkMode ? 'text-white' : 'text-black'}`} /> : "Compile Code"}
+                {loading ? <ClipLoader size={30} color={darkMode ? "#000" : "#fff"} /> : "Compile Code"}
               </Button>
             </div>
             <hr className={darkMode ? "border-gray-800" : "border-gray-200"} />

@@ -7,7 +7,6 @@ import ItemDropdown from "@/components/ui/ItemDropdown"
 import Link from "next/link";
 import data from "@/components/layout/header/nav_data"
 import { Facebook, Instagram, Linkedin, LogIn, Twitter, UserPlus } from "lucide-react";
-import Image from "next/image";
 
 const sheetVariants = {
   opened: {

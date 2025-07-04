@@ -35,8 +35,16 @@ const Hero = () => {
       transition={{ duration: 0.6 }}
       className="w-full h-full max-h-[500px] flex flex-col items-center justify-center p-4 overflow-x-hidden"
     >
-       <div className="items-center justify-center hidden lg:flex flex-col my-6">
-        <span className="text-3xl md:text-4xl lg:text-5xl audiowide rounded-md p-2 bg-gradient-to-r from-red-500 to-violet-700 dark:to-white text-transparent bg-clip-text flex items-center justify-center">
+      <div className="items-center justify-center flex flex-col my-6">
+        <span
+          className="audiowide rounded-md p-2 bg-gradient-to-r from-red-500 to-violet-700 dark:to-white text-transparent bg-clip-text flex items-center justify-center"
+          style={{
+            fontSize: '2rem',
+            fontWeight: 700,
+            letterSpacing: '0.05em',
+            lineHeight: 1.1,
+          }}
+        >
           <span className="mr-1">Round</span>|<span>Table</span>
         </span>
         <div className=""></div>

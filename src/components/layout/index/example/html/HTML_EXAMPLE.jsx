@@ -70,7 +70,7 @@ const HTML_EXAMPLE = () => {
               srcDoc={output}
               title="output"
               frameBorder="0"
-              sandbox="allow-scripts allow-same-origin"
+              sandbox="allow-scripts"
               className="w-full h-max"
             />
           </div>

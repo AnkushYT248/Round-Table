@@ -90,7 +90,6 @@ for(let i = 0; i < 10; i++) {
               srcDoc={output}
               title="output"
               frameBorder="0"
-              sandbox="allow-scripts allow-same-origin"
               className="w-full h-max"
             />
           </div>

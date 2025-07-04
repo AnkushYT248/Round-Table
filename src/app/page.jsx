@@ -1,3 +1,4 @@
+
 import Header from "@/components/layout/header/Header";
 import Hero from "@/components/layout/index/hero/Hero";
 import Courses from "@/components/layout/index/features/Courses";
@@ -9,13 +10,22 @@ export default function Home() {
   return (
     <>
       <Header />
-     
-      <Hero />
-      <Courses />
-      <Example />
-      <hr></hr>
-      <Explore />
-      <CTA />
+      <main>
+        <Hero />
+        <section aria-labelledby="courses-heading">
+          <Courses />
+        </section>
+        <section aria-labelledby="examples-heading">
+          <Example />
+        </section>
+        <hr />
+        <section aria-labelledby="explore-heading">
+          <Explore />
+        </section>
+        <section aria-labelledby="cta-heading">
+          <CTA />
+        </section>
+      </main>
     </>
   );
 }

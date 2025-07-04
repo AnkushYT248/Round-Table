@@ -18,6 +18,7 @@ const CTA = () => {
           src={"https://placehold.co/600x400.png"}
           alt="Learning community illustration"
           fill
+          sizes="(max-width: 768px) 100vw, 600px"
           priority
           className="object-cover rounded-xl border border-gray-200 dark:border-gray-700"
         />

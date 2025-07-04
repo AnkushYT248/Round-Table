@@ -89,7 +89,6 @@ else:
               srcDoc={output}
               title="output"
               frameBorder="0"
-              sandbox="allow-scripts allow-same-origin"
               className="w-full h-max"
             />
           </div>

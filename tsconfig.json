@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.jsx", "src/app/page.jsx", "src/components/ui/ItemDropdown.jsx", "src/app/api/compiler/route.js", "src/app/api/compiler/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.jsx", "src/app/page.jsx", "src/components/ui/ItemDropdown.jsx", "src/app/api/compiler/route.js", "src/app/api/compiler/route.js", "src/utils/iconsMap.js"],
   "exclude": ["node_modules"]
 }

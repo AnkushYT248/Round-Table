@@ -1,76 +1,66 @@
-'use client'
+"use client";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import React, { useRef } from "react";
-
-const links = [
-  {
-    title: "DSA",
-    path: "/courses/dsa",
-  },
-  {
-    title: "Data Science",
-    path: "/courses/data-science",
-  },
-  {
-    title: "Python",
-    path: "/courses/python",
-  },
-  {
-    title: "Java",
-    path: "/courses/java",
-  },
-  {
-    title: "Java Script",
-    path: "/courses/javascript",
-  },
-  {
-    title: "React",
-    path: "/courses/react",
-  },
-  {
-    title: "Django",
-    path: "/courses/django",
-  },
-  {
-    title: "Rust",
-    path: "/courses/rust",
-  },
-  {
-    title: "Ruby",
-    path: "/courses/ruby",
-  },
-  {
-    title: "C++",
-    path: "/courses/cpp",
-  },
-  {
-    title: "C#",
-    path: "/courses/csharp",
-  },
-  {
-    title: "Unreal Engine",
-    path: "/courses/unreal-engine",
-  },
-  {
-    title: "Backend",
-    path: "/courses/backend",
-  },
-  {
-    title: "More",
-    path: "/courses/all",
-  },
-];
+import React, { useEffect, useRef, useState } from "react";
 
 const CarouselLinks = () => {
   const scrollRef = useRef(null);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      await fetch("/api/nav_data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          requestType: "getPillBarData",
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            setIsLoading(false);
+            return;
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setData(data);
+
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+        });
+    }
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-[200vw] mx-auto relative scroll bg-white dark:bg-[#0f0f10]">
+        <div className="flex items-center gap-3 justify-between p-1">
+          {Array.from({ length: 10 }).map((_, idx) => {
+            return <Skeleton className="h-6 w-10 " key={idx} />;
+          })}
+        </div>
+      </div>
+    );
+  }
 
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
       const scrollAmount = clientWidth * 0.7;
       scrollRef.current.scrollTo({
-        left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        left:
+          direction === "left"
+            ? scrollLeft - scrollAmount
+            : scrollLeft + scrollAmount,
         behavior: "smooth",
       });
     }
@@ -93,7 +83,7 @@ const CarouselLinks = () => {
           className="flex items-center gap-3 justify-start overflow-x-auto scrollbar-hide px-10"
           style={{ scrollBehavior: "smooth" }}
         >
-          {links.map((link, idx) => (
+          {data.map((link, idx) => (
             <Link
               href={link.path}
               key={idx}

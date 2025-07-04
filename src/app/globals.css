@@ -77,9 +77,11 @@
 
 body {
   font-family: var(--font-lato), sans-serif;
+  font-display: swap;
 }
 .audiowide {
   font-family: var(--font-audiowide);
+  font-display: swap;
 }
 
 :root {

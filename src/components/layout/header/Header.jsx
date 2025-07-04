@@ -1,6 +1,6 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-import data from "./nav_data";
+import React, { useEffect, useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,8 +14,46 @@ import { Button } from "@/components/ui/button";
 import ThemeChanger from "@/components/layout/theme/ThemeChanger";
 import SheetLayout from "@/components/layout/header/Sheet";
 import CarouselLinks from "@/components/layout/header/Carousel_Links";
+import useSWR from "swr";
+import { iconMap } from "@/utils/iconsMap";
+import Header_Skeleton from "./header_skeleton";
 
 const Header = () => {
+  const [data,setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(()=> {
+    async function fetchData() {
+      await fetch("/api/nav_data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+       body: JSON.stringify({
+          requestType: "getNavData",
+       }), 
+      }).then((res)=> {
+        if(!res.ok) {
+          setIsLoading(false);
+          return;
+        }
+        return res.json();
+      }).then((data) => {
+        setData(data);
+        setIsLoading(false);
+      }).catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
+    }
+
+    fetchData();
+  }, [])
+
+  if (isLoading) {
+    return <Header_Skeleton />;
+  }
+
   return (
     <div className="relative">
       <div className="fixed z-60 top-0 left-0 w-screen h-15 bg-white dark:bg-[#0f0f10] text-black dark:text-white">
@@ -27,12 +65,12 @@ const Header = () => {
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger className="font-bold flex items-center gap-3">
-                        {data.icon} {data.title}
+                        {iconMap[data.icon]} {data.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                           {data.items.map((d, idx) => (
-                            <ListItem key={idx} title={d.item} href={d.path}>
+                            <ListItem key={idx} title={d.title} href={d.path}>
                               {/* {component.description} */}
                             </ListItem>
                           ))}

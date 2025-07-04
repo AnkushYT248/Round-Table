@@ -7,7 +7,7 @@ import JS_EXAMPLE from "./js/JS_EXAMPLE";
 
 const Example = () => {
   return (
-    <div className="mx-auto px-6 py-10">
+    <div className="mx-auto px-6 py-10 dark:bg-gray-900 bg-white rounded-lg shadow-lg mb-4">
       <div className="text-center">
         <h2 className="text-3xl font-bold tracking-wide">Code Examples</h2>
         <p className="text-sm mt-1 font-medium tracking-wide">
@@ -15,7 +15,7 @@ const Example = () => {
           programming languages.
         </p>
         <div className="flex items-center gap-4 justify-center flex-wrap my-4">
-          <span className="p-2 bg-white shadow-2xl dark:bg-gray-800 rounded-lg font-bold flex items-center gap-4">
+          <span className="p-2 shadow-2xl text-white bg-gray-800 rounded-lg font-bold flex items-center gap-4">
             <Image
               src={"/images/svg/html.svg"}
               alt="html"
@@ -24,7 +24,7 @@ const Example = () => {
             />
             HTML
           </span>
-          <span className="p-2 bg-white shadow-2xl dark:bg-gray-800 rounded-lg font-bold flex items-center gap-4">
+          <span className="p-2 shadow-2xl text-white bg-gray-800 rounded-lg font-bold flex items-center gap-4">
             <Image
               src={"/images/svg/css.svg"}
               alt="css"
@@ -33,16 +33,16 @@ const Example = () => {
             />
             CSS
           </span>
-          <span className="p-2 bg-white shadow-2xl dark:bg-gray-800 rounded-lg font-bold flex items-center gap-4">
+          <span className="p-2 shadow-2xl text-white bg-gray-800 rounded-lg font-bold flex items-center gap-4">
             <Image
               src={"/images/svg/java-script.svg"}
-              alt="css"
+              alt="java script"
               width={24}
               height={24}
             />
             JAVA SCRIPT
           </span>
-          <span className="p-2 bg-white shadow-2xl dark:bg-gray-800 rounded-lg font-bold flex items-center gap-4">
+          <span className="p-2 shadow-2xl text-white bg-gray-800 rounded-lg font-bold flex items-center gap-4">
             <Image
               src={"/images/svg/python.svg"}
               alt="python"

@@ -130,7 +130,7 @@ const Header = () => {
                         <ListItem
                           key={idx}
                           title={item.name}
-                          href={item.tutorialLink}
+                          href={`${item.tutorialLink}/introduction`}
                         />
                       ))}
                       <ListItem title="All Tutorials" href={"/tutorials/"} />

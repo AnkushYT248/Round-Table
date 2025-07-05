@@ -1,8 +1,9 @@
 import { Lato, Audiowide } from "next/font/google";
 import "./globals.css";
 import { ThemeContextProvider } from "@/context/ThemeContext";
-import ThemeBody from "@/components/ThemeBody"
+import ThemeBody from "@/components/ThemeBody";
 import Footer from "@/components/layout/footer/Footer";
+import Header from "@/components/layout/header/Header";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <ThemeBody
           className={`${lato.className} ${audiowide.variable} antialiased h-screen w-screen overflow-x-hidden`}
         >
+          <Header />
           {children}
           <Footer />
         </ThemeBody>

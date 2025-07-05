@@ -9,7 +9,6 @@ import CTA from "@/components/layout/index/cta/Cta";
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <section aria-labelledby="courses-heading">

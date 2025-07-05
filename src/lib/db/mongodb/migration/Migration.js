@@ -83,10 +83,109 @@ const tutorialsData = [
     description: "Python is a powerful, easy-to-learn programming language known for its clear syntax and versatility. It's widely used in web development, data science, automation, artificial intelligence, and more.",
     usedFor: ["Web Development", "Data Science", "AI", "Automation"],
     refrenceLink: "https://www.python.org/",
+    tags: ["python", "beginner", "programming"],
+    sidebar: [
+      {
+        section: "Python Tutorial",
+        items: [
+          { key: "introduction", title: "Introduction to Python" },
+          { key: "basics", title: "Python Basics" },
+        ]
+      },
+      {
+        section: "Advanced",
+        items: [
+          { key: "oop", title: "Object-Oriented Programming" },
+          { key: "modules", title: "Modules & Packages" },
+        ]
+      }
+    ],
+    chapters: {
+      introduction: {
+        title: "Introduction to Python",
+        chapter_description: "Learn the basics of Python, including syntax, data types, and control structures.",
+        content: "<p>Python is a versatile language used for web, data science, and more.</p>",
+        blocks: [
+          {
+            heading: "Getting started with Python",
+            text: "Learn how to install Python and set up your development environment.",
+            codeExamples: [
+              {
+                language: "python",
+                code: "print('Hello, World!')",
+                explanation: "This prints Hello, World! to the console."
+              }
+            ]
+          },
+          {
+            heading: "Variables and Data Types",
+            text: "Understand variables and data types in Python.",
+            codeExamples: [
+              {
+                language: "python",
+                code: "name = 'Alice'\nage = 25\nis_student = True",
+                explanation: "String, integer, and boolean types."
+              }
+            ]
+          }
+        ],
+        images: ["/images/python_intro.png"],
+        tips: ["Indentation is important in Python!"],
+        faqs: [
+          { question: "Is Python easy to learn?", answer: "Yes, Python is known for its simple syntax." }
+        ]
+      },
+      basics: {
+        title: "Python Basics",
+        chapter_description: "Covers basic syntax, operators, and control flow.",
+        content: "<p>Learn about Python's basic syntax, operators, and control flow.</p>",
+        blocks: [
+          {
+            heading: "If Statements",
+            text: "Learn how to use if, elif, and else.",
+            codeExamples: [
+              {
+                language: "python",
+                code: "x = 10\nif x > 5:\n    print('x is greater than 5')\nelse:\n    print('x is 5 or less')",
+                explanation: "Basic if-else statement."
+              }
+            ]
+          }
+        ],
+        images: [],
+        tips: ["Use elif for multiple conditions."],
+        faqs: [
+          { question: "What is an if statement?", answer: "It allows conditional execution of code blocks." }
+        ]
+      },
+      oop: {
+        title: "Python OOP",
+        chapter_description: "Covers Object-Oriented Programming concepts in Python.",
+        content: "<p>Learn about classes, objects, and inheritance in Python.</p>",
+        blocks: [
+          {
+            heading: "Classes and Objects",
+            text: "Understand the basics of classes and objects in Python.",
+            codeExamples: [
+              {
+                language: "python",
+                code: "class Dog:\n    def __init__(self, name):\n        self.name = name\n    def bark(self):\n        print('Woof!')\nmy_dog = Dog('Buddy')\nmy_dog.bark()",
+                explanation: "This defines a Dog class with a bark method."
+              }
+            ]
+          }
+        ],
+        images: [],
+        tips: ["Use inheritance to create a hierarchy of classes."],
+        faqs: [
+          { question: "What is a class?", answer: "A class is a blueprint for creating objects." }
+        ]
+      },
+    }
   },
   {
     name: "JavaScript",
-    tutorialLink: "/tutorials/javascript",
+    tutorialLink: "/tutorials/javascript/",
     createdAt: "1995-12-04",
     designBy: "Brendan Eich",
     developer: "Mozilla Foundation",
@@ -96,7 +195,7 @@ const tutorialsData = [
   },
   {
     name: "React",
-    tutorialLink: "/tutorials/react",
+    tutorialLink: "/tutorials/react/",
     createdAt: "2013-05-29",
     designBy: "Jordan Walke",
     developer: "Meta",
@@ -106,7 +205,7 @@ const tutorialsData = [
   },
   {
     name: "Node.js",
-    tutorialLink: "/tutorials/nodejs",
+    tutorialLink: "/tutorials/nodejs/",
     createdAt: "2009-05-27",
     designBy: "Ryan Dahl",
     developer: "Node.js Foundation",
@@ -116,7 +215,7 @@ const tutorialsData = [
   },
   {
     name: "Machine Learning",
-    tutorialLink: "/tutorials/machine-learning",
+    tutorialLink: "/tutorials/machine-learning/",
     createdAt: "2012-03-15",
     designBy: "Andrew Ng",
     developer: "Stanford University",
@@ -126,7 +225,7 @@ const tutorialsData = [
   },
   {
     name: "Data Science",
-    tutorialLink: "/tutorials/data-science",
+    tutorialLink: "/tutorials/data-science/",
     createdAt: "-",
     designBy: "-",
     developer: "-",
@@ -136,7 +235,7 @@ const tutorialsData = [
   },
   {
     name: "Web Development",
-    tutorialLink: "/tutorials/web-development",
+    tutorialLink: "/tutorials/web-development/",
     createdAt: "-",
     designBy: "-",
     developer: "-",
@@ -146,7 +245,7 @@ const tutorialsData = [
   },
   {
     name: "Cloud Computing",
-    tutorialLink: "/tutorials/cloud-computing",
+    tutorialLink: "/tutorials/cloud-computing/",
     createdAt: "-",
     designBy: "-",
     developer: "-",

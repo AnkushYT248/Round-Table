@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,6 +15,7 @@ import ThemeChanger from "@/components/layout/theme/ThemeChanger";
 import SheetLayout from "@/components/layout/header/Sheet";
 import CarouselLinks from "@/components/layout/header/Carousel_Links";
 import Header_Skeleton from "./header_skeleton";
+import { usePathname } from "next/navigation";
 
 const practice = [
   {
@@ -44,6 +45,7 @@ const Header = () => {
   const [tutorialsData, setTutorialsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pileData, setPileData] = useState([]);
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchNavData = async () => {
@@ -90,6 +92,10 @@ const Header = () => {
 
     fetchNavData();
   }, []);
+
+  if (pathname && pathname.startsWith("/protected")) {
+    return null;
+  }
 
   if (isLoading) {
     return <Header_Skeleton />;

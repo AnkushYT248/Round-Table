@@ -1,3 +1,5 @@
+'use client';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const footerLinks = [
@@ -32,6 +34,11 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if(pathname && pathname.startsWith('/protected')) {
+    return null; // Hide footer on admin page
+  }
   return (
     <footer className="w-full px-4 py-12 bg-gradient-to-b from-[#23272f] via-[#181b20] to-[#111111] dark:from-[#181b20] dark:via-[#181b20] dark:to-[#23272f] text-gray-200 dark:text-gray-300 border-t border-gray-800 mt-12 relative overflow-hidden">
       {/* Decorative background */}

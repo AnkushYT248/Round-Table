@@ -1,4 +1,4 @@
-import { Lato, Audiowide } from "next/font/google";
+import { Lato, Audiowide, Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeBody from "@/components/ThemeBody";
@@ -17,6 +17,12 @@ const audiowide = Audiowide({
   weight: ["400"],
 });
 
+const monts = Montserrat({
+  variable: '--font-monts',
+  weight: ['100','200','300','400','500','600','700','800','900'],
+  subsets: ['latin']
+})
+
 export const metadata = {
   title: "Round Table | World Grows As Its Learns",
   description: "Round Table is a platform for learning and growing together.",
@@ -27,7 +33,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThemeContextProvider>
         <ThemeBody
-          className={`${lato.className} ${audiowide.variable} antialiased h-screen w-screen overflow-x-hidden`}
+          className={`${lato.className} ${audiowide.variable} ${monts.variable} antialiased h-screen w-screen overflow-x-hidden`}
         >
           <Header />
           {children}

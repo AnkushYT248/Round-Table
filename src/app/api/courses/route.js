@@ -6,6 +6,17 @@ export async function GET() {
   try {
     await ConnectToMongoClientDb();
     const courses = await CourseModel.find({});
+    if(!courses || courses.length === 0) {
+      return NextResponse.json(
+        { message: "No courses found" },
+        {
+          status: 404,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
     return NextResponse.json(
       { courses },
       {

@@ -76,6 +76,7 @@ const Header = () => {
             ...tutorialData.slice(0, 6).map((item) => ({
               ...item,
               path: item.tutorialLink,
+              title: item.name,
             })),
           ];
           setPileData(pile);
@@ -95,94 +96,99 @@ const Header = () => {
   }
 
   return (
-    <div className="relative">
-      <div className="fixed z-60 top-0 left-0 w-screen h-15 bg-white dark:bg-[#0f0f10] text-black dark:text-white">
-        <div className="flex items-center justify-between px-4">
-          <div className="lg:flex items-center gap-4 flex-1 hidden">
+    <header className="relative w-full">
+      <nav className="fixed z-50 top-0 left-0 w-full bg-white/90 dark:bg-[#0f0f10]/90 text-black dark:text-white shadow-sm border-b border-gray-200 dark:border-gray-800 backdrop-blur-md transition-colors">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-2 sm:px-4 lg:px-8 h-[60px]">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-6 flex-1 min-w-0">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-bold flex items-center gap-3">
-                    <GraduationCap /> Courses
+                  <NavigationMenuTrigger className="font-bold flex items-center gap-2 text-base px-3 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition">
+                    <GraduationCap size={20} /> Courses
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {coursesData.map((item, idx) => {
-                        return (
-                          <ListItem
-                            key={idx}
-                            title={item.title}
-                            href={item.courseLink}
-                          />
-                        );
-                      })}
+                    <ul className="grid w-[350px] gap-2 md:w-[450px] md:grid-cols-2 lg:w-[600px]">
+                      {coursesData.map((item, idx) => (
+                        <ListItem
+                          key={idx}
+                          title={item.title}
+                          href={item.courseLink}
+                        />
+                      ))}
                       <ListItem title="All Courses" href={"/courses"} />
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-bold flex items-center gap-3">
-                    <BookOpenText /> Tutorials
+                  <NavigationMenuTrigger className="font-bold flex items-center gap-2 text-base px-3 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition">
+                    <BookOpenText size={20} /> Tutorials
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {tutorialsData.map((item, idx) => {
-                        return (
-                          <ListItem
-                            key={idx}
-                            title={item.title}
-                            href={item.tutorialLink}
-                          />
-                        );
-                      })}
-                      <ListItem title="All Practice" href={"/practice/"} />
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-bold flex items-center gap-3">
-                    <Brain /> Practice
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {practice.map((item, idx) => {
-                        return (
-                          <ListItem
-                            key={idx}
-                            title={item.title}
-                            href={item.path}
-                          />
-                        );
-                      })}
+                    <ul className="grid w-[350px] gap-2 md:w-[450px] md:grid-cols-2 lg:w-[600px]">
+                      {tutorialsData.map((item, idx) => (
+                        <ListItem
+                          key={idx}
+                          title={item.name}
+                          href={item.tutorialLink}
+                        />
+                      ))}
                       <ListItem title="All Tutorials" href={"/tutorials/"} />
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="font-bold flex items-center gap-2 text-base px-3 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition">
+                    <Brain size={20} /> Practice
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[350px] gap-2 md:w-[450px] md:grid-cols-2 lg:w-[600px]">
+                      {practice.map((item, idx) => (
+                        <ListItem
+                          key={idx}
+                          title={item.title}
+                          href={item.path}
+                        />
+                      ))}
+                      <ListItem title="All Practice" href={"/practice/"} />
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <SheetLayout />
-          <div className="flex-1 flex items-center justify-center lg:hidden">
+          {/* Mobile Nav & Logo */}
+          <div className="flex items-center gap-2 flex-1 lg:hidden min-w-0">
+            <SheetLayout courseData={coursesData} TutorialData={tutorialsData} />
             <Link
               href={"/"}
-              className="text-xl audiowide rounded-md p-1 text-black dark:text-white flex items-center justify-center"
+              className="text-2xl font-extrabold tracking-tight audiowide rounded-md px-2 py-1 flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 bg-clip-text text-transparent"
+              aria-label="Roundtable Home"
             >
               <span className="mr-1">R</span>
               <span>T</span>
             </Link>
           </div>
-          <div className="flex items-center gap-4 flex-1 justify-end p-2">
+          {/* Right Side Controls */}
+          <div className="flex items-center gap-3 flex-1 justify-end min-w-0">
             <ThemeChanger />
-            <Bell />
-            <Button>Sign In</Button>
+            <button
+              className="relative p-2 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/30 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Notifications"
+            >
+              <Bell size={22} />
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white dark:border-[#0f0f10] animate-pulse" />
+            </button>
+            <Button className="font-semibold px-5 py-2 rounded-lg shadow-sm bg-gradient-to-r from-blue-600 to-purple-500 text-white hover:from-blue-700 hover:to-purple-600 dark:hover:from-blue-500 dark:hover:to-purple-400 dark:hover:text-gray-900 transition-colors">
+              Sign In
+            </Button>
           </div>
         </div>
         <CarouselLinks data={pileData} isLoading={isLoading} />
-      </div>
-    </div>
+      </nav>
+      {/* Spacer for fixed nav */}
+      <div className="h-[60px] w-full" />
+    </header>
   );
 };
 
@@ -192,14 +198,16 @@ function ListItem({ title, children, href, icon, ...props }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium flex items-center gap-4">
+        <Link href={href} className="block px-3 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
+          <div className="text-base font-semibold flex items-center gap-3 text-gray-900 dark:text-white">
             {icon && icon}
             {title}
           </div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
+          {children && (
+            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug mt-1">
+              {children}
+            </p>
+          )}
         </Link>
       </NavigationMenuLink>
     </li>
